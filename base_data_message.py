@@ -109,13 +109,13 @@ def get_base_report_type_url():
     report_dict = {}
     report_dict['category_id'] = 17
     report_dict['category'] = 'category_bcgz_szsh;'
-    report_dict['show_title'] = 'category_bcgz_szsh/category/category_bcgz_szsh'
+    report_dict['show_title'] = 'category_bcgz_szsh/category/补充及更正'
     base_report_type_url_list.append(report_dict)
 
     report_dict = {}
     report_dict['category_id'] = 18
     report_dict['category'] = 'category_zjjg_szsh;'
-    report_dict['show_title'] = 'category_zjjg_szsh/category/中介机构'
+    report_dict['show_title'] = 'category_zjjg_szsh/category/中介机构报告'
     base_report_type_url_list.append(report_dict)
 
     report_dict = {}

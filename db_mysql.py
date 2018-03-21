@@ -6,8 +6,8 @@ import datetime
 def mysql_connect():
     try:
         # mysql_conn = MySQLdb.connect("127.0.0.1","root","123456","db_finance",charset="utf8")
-        # mysql_conn = MySQLdb.connect("192.168.2.168","root","123456","db_finance",charset="utf8")
-        mysql_conn = MySQLdb.connect("192.168.0.106","report","report2018","db_finance",charset="utf8")
+        mysql_conn = MySQLdb.connect("192.168.2.168","root","123456","db_finance",charset="utf8")
+        # mysql_conn = MySQLdb.connect("192.168.0.106","report","report2018","db_finance",charset="utf8")
     except:
         print "connect mysql error"
         return 0
@@ -18,43 +18,26 @@ def insert_mysql_t_finance_report(mysql_conn,*args):
     # print args
     # print len(args)
     if len(args) == 12:
-        report_id = args[0]
-        publish_date = args[1]
-        report_type_id = int(args[2])
-        report_type = args[3]
-        report_title = args[4]
-        report_organization = args[5]
-        file_size = int(args[6])
-        page_count = int(args[7])
-        file_url = args[8]
-        pdf_url = args[9]
-        report_content = args[10].replace("'","''")
-        file_local_path = args[11]
+        hid = args[0]
+        sec_code = args[1]
+        sec_name = args[2].encode('utf-8')
+        notice_title = args[3].encode('utf-8')
+        file_type = args[4]
+        file_size = int(args[5])
+        pdf_url = args[6]
+        notice_id = int(args[7])
+        notice_type = args[8]
+        notice_date = args[9]
+        page_count = int(args[10])
+        local_file = args[11].encode('utf-8')
 
-        # print type(report_id)
-        # print type(publish_date)
-        # print "file_name type:",type(file_local_path)
-        # print "report_type_id type:",type(report_type_id)
-        # print "content type ",type(report_content)
-        # print "file ",type(file_size)
-        # print "count ",type(page_count)
-
-        # abstract_author = abstract_author.replace("'","''")
-        # print article_id, article_url, publication_title
-        # print "type abstract_author:::::::",type(abstract_author)
-        # print "abstract_author:::::::",abstract_author
-    # time.sleep(3)
     try:
         mysql_cursor = mysql_conn.cursor()
-        sql = '''insert into db_finance.t_finance_research_report (report_id, publish_date, report_type_id, report_type, report_title, \
-                  report_organization, file_size, page_count, file_url, pdf_url, report_content, file_local_path) values('%s', '%s', '%d', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s')''' \
-                    %(report_id, publish_date, report_type_id, report_type, report_title,report_organization, file_size, page_count, file_url, pdf_url, report_content, file_local_path)
+        sql = '''insert into db_finance.t_finance_history_report (hid, sec_code, sec_name, notice_title, file_type, \
+                  file_size, pdf_url, notice_id, notice_type, notice_date, page_count, local_file) values('%s', '%s', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%d', '%s')''' \
+                    %(hid, sec_code, sec_name, notice_title, file_type,file_size, pdf_url, notice_id, notice_type, notice_date, page_count, local_file)
 
-        write_file(sql)
-        # sql = '''insert into db_finance.t_finance_report (report_id, publish_date, report_type_id, report_type, report_title,
-        #           report_organization, file_size, page_count, file_url, report_content, file_local_path) values(report_id, publish_date,
-        #           report_type_id, report_type, report_title,report_organization, file_size, page_count, file_url, report_content, file_local_path)'''
-
+        # write_file(sql)
         mysql_cursor.execute(sql)
         mysql_conn.commit()
     except:
@@ -63,24 +46,17 @@ def insert_mysql_t_finance_report(mysql_conn,*args):
     return 0
 
 
-def get_mysql_record(mysql_conn,report_type_id):
+def get_mysql_record(mysql_conn, start_date, last_date):
     mysql_cursor = mysql_conn.cursor()
-    sql1 = "SELECT publish_date FROM db_finance.t_finance_research_report WHERE report_type_id = '%d' order by publish_date desc limit 1;" % (report_type_id)
+    sql1 = "SELECT notice_date FROM db_finance.t_finance_history_report WHERE notice_date >= '%s' and notice_date<= '%s' order by notice_date asc limit 1;" % (start_date,last_date)
     mysql_cursor.execute(sql1)
     data = mysql_cursor.fetchone()
     try:
         last_publish_date = data[0]
     except:
-        last_publish_date = datetime.datetime.strptime("2010-06-07 9:34:45", "%Y-%m-%d %H:%M:%S")
+        last_publish_date = last_date
 
-    sql2 = "SELECT count(*) FROM db_finance.t_finance_research_report WHERE report_type_id = '%d'" % (report_type_id)
-    mysql_cursor.execute(sql2)
-    result = mysql_cursor.fetchone()
-    try:
-        record_count = result[0]
-    except:
-        record_count = 1
-    return record_count,last_publish_date
+    return last_publish_date
 
 def write_file(sql):
     f = open("sql.sql",'w')

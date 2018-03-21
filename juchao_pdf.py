@@ -31,9 +31,9 @@ def get_pdf_path():
     return father_path
 
 #返回是否成功下载
-def download_pdf(url,file_name):
+def download_pdf(url,file_name,current_year):
     # url = "http://pg.jrj.com.cn/acc/Res/CN_RES/FUTURES/2018/3/1/4ae0f0c1-72c1-441c-8315-f21f6366216a.pdf"
-    print "pdf url ",url
+    # print "pdf url ",url
     # file_name = get_pdf_path() + "\\research_report_pdf\\" + file_name
     # path_file_name = 'home/user1/python/report/file/' + file_name
     path_file_name = file_name
@@ -50,7 +50,7 @@ def download_pdf(url,file_name):
                 break
             f.write(buffer)
         f.close()
-        print ("Sucessful to download" + " " + path_file_name)
+        # print ("Sucessful to download" + " " + path_file_name)
         return True
 
 
