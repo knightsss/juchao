@@ -31,7 +31,7 @@ def get_pdf_path():
     return father_path
 
 #返回是否成功下载
-def download_pdf(url,file_name,current_year):
+def download_pdf(url, file_name, current_year, request_column):
     # url = "http://pg.jrj.com.cn/acc/Res/CN_RES/FUTURES/2018/3/1/4ae0f0c1-72c1-441c-8315-f21f6366216a.pdf"
     # print "pdf url ",url
     # file_name = get_pdf_path() + "\\research_report_pdf\\" + file_name
@@ -75,7 +75,7 @@ def reload_pdf_page_size(file_name):
 
 
 #通过文件名 获取文件页数，文件大小
-def reload_pdf(file_name):
+def reload_pdf(file_name, current_year, request_column):
     # 获取一个 PdfFileReader 对象
     page_count = 0
     file_size = 0

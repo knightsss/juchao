@@ -14,13 +14,16 @@ def mysql_connect():
     return mysql_conn
 
 #写入mysql mysql数据库需要将unnicode转换成str
-def insert_mysql_t_finance_report(mysql_conn,*args):
+def insert_mysql_t_finance_report(mysql_conn, table_name, *args):
     # print args
     # print len(args)
     if len(args) == 12:
         hid = args[0]
         sec_code = args[1]
-        sec_name = args[2].encode('utf-8')
+        if (args[2]):
+            sec_name = args[2].encode('utf-8')
+        else:
+            sec_name = ''
         notice_title = args[3].encode('utf-8')
         file_type = args[4]
         file_size = int(args[5])
@@ -33,7 +36,7 @@ def insert_mysql_t_finance_report(mysql_conn,*args):
 
     try:
         mysql_cursor = mysql_conn.cursor()
-        sql = '''insert into db_finance.t_finance_history_report (hid, sec_code, sec_name, notice_title, file_type, \
+        sql = '''insert into db_finance.''' + table_name + ''' (hid, sec_code, sec_name, notice_title, file_type, \
                   file_size, pdf_url, notice_id, notice_type, notice_date, page_count, local_file) values('%s', '%s', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%d', '%s')''' \
                     %(hid, sec_code, sec_name, notice_title, file_type,file_size, pdf_url, notice_id, notice_type, notice_date, page_count, local_file)
 
@@ -46,9 +49,10 @@ def insert_mysql_t_finance_report(mysql_conn,*args):
     return 0
 
 
-def get_mysql_record(mysql_conn, start_date, last_date):
+def get_mysql_record(mysql_conn, table_name, start_date, last_date):
     mysql_cursor = mysql_conn.cursor()
-    sql1 = "SELECT notice_date FROM db_finance.t_finance_history_report WHERE notice_date >= '%s' and notice_date<= '%s' order by notice_date asc limit 1;" % (start_date,last_date)
+    sql1 = "SELECT notice_date FROM db_finance." + table_name +  " WHERE notice_date >= '%s' and notice_date<= '%s' order by notice_date asc limit 1;" % (start_date,last_date)
+    print sql1
     mysql_cursor.execute(sql1)
     data = mysql_cursor.fetchone()
     try:

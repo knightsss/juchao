@@ -74,7 +74,7 @@ def spider_page_report(current_year):
             json_content = simplejson.loads(contens)
             total_count = json_content['totalRecordNum']
             page_count = (total_count+29)/30
-            print "search_date:",search_date," total_count:",total_count," page_count:",page_count," announcement_type_desc:",announcement_type_desc, " announcement_type:",announcement_type
+            print "time:",  , "search_date:",search_date," total_count:",total_count," page_count:",page_count," announcement_type_desc:",announcement_type_desc, " announcement_type:",announcement_type
             time.sleep(1)
             #遍历当天的所有page
             for i in range(page_count):
@@ -104,8 +104,6 @@ def spider_page_report(current_year):
                         #写入mysql
                     else:
                         print "download pdf error:",pdf_url
-                break
-            #break
         time.sleep(2)
         last_date = last_date - datetime.timedelta(days=1)
 

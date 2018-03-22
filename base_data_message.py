@@ -155,3 +155,14 @@ def get_base_report_type_url():
     base_report_type_url_list.append(report_dict)
 
     return base_report_type_url_list
+
+def get_pre_disclosure_report_type():
+    base_report_type_url_list = []
+
+    report_dict = {}
+    report_dict['category_id'] = 0
+    report_dict['category'] = ''
+    report_dict['show_title'] = '/'
+    base_report_type_url_list.append(report_dict)
+
+    return base_report_type_url_list
