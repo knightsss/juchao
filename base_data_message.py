@@ -5,7 +5,6 @@ __author__ = 'shifx'
 def get_base_report_type_url():
     base_report_type_url_list = []
 
-
     report_dict = {}
     report_dict['category_id'] = 1
     report_dict['category'] = 'category_ndbg_szsh;'
@@ -156,6 +155,7 @@ def get_base_report_type_url():
 
     return base_report_type_url_list
 
+#预披露
 def get_pre_disclosure_report_type():
     base_report_type_url_list = []
 
@@ -163,6 +163,144 @@ def get_pre_disclosure_report_type():
     report_dict['category_id'] = 0
     report_dict['category'] = ''
     report_dict['show_title'] = '/'
+    base_report_type_url_list.append(report_dict)
+
+    return base_report_type_url_list
+
+#股份转让
+def get_neeq_company_report_type():
+    base_report_type_url_list = []
+
+    report_dict = {}
+    report_dict['category_id'] = 1
+    report_dict['category'] = 'category_lsgg_gfzr'
+    report_dict['show_title'] = 'category_lsgg_gfzr/category/临时公告'
+    base_report_type_url_list.append(report_dict)
+
+
+    report_dict = {}
+    report_dict['category_id'] = 2
+    report_dict['category'] = 'category_dqgg_gfzr'
+    report_dict['show_title'] = 'category_dqgg_gfzr/category/定期公告'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 3
+    report_dict['category'] = 'category_zjjg_gfzr'
+    report_dict['show_title'] = 'category_zjjg_gfzr/category/中介机构公告'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 4
+    report_dict['category'] = 'category_cxpl_gfzr'
+    report_dict['show_title'] = 'category_cxpl_gfzr/category/持续信息披露'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 5
+    report_dict['category'] = 'category_scpl_gfzr'
+    report_dict['show_title'] = 'category_scpl_gfzr/category/首次信息披露'
+    base_report_type_url_list.append(report_dict)
+
+    return base_report_type_url_list
+
+#香港
+def get_hke_report_type():
+    base_report_type_url_list = []
+
+    report_dict = {}
+    report_dict['category_id'] = 0
+    report_dict['category'] = ''
+    report_dict['show_title'] = '/'
+    base_report_type_url_list.append(report_dict)
+
+    return base_report_type_url_list
+
+
+#基金
+def get_fund_report_type():
+    base_report_type_url_list = []
+
+    report_dict = {}
+    report_dict['category_id'] = 1
+    report_dict['category'] = 'category_jjzm_jjgg'
+    report_dict['show_title'] = 'category_jjzm_jjgg/category/基金招募及设立'
+    base_report_type_url_list.append(report_dict)
+
+
+    report_dict = {}
+    report_dict['category_id'] = 2
+    report_dict['category'] = 'category_ndbg_jjgg'
+    report_dict['show_title'] = 'category_ndbg_jjgg/category/年度报告'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 3
+    report_dict['category'] = 'category_bndbg_jjgg'
+    report_dict['show_title'] = 'category_bndbg_jjgg/category/半年度报告'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 4
+    report_dict['category'] = 'category_jdbg_jjgg'
+    report_dict['show_title'] = 'category_jdbg_jjgg/category/季度报告'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 5
+    report_dict['category'] = 'category_jzgg_jjgg'
+    report_dict['show_title'] = 'category_jzgg_jjgg/category/净值公告'
+    base_report_type_url_list.append(report_dict)
+
+
+    report_dict = {}
+    report_dict['category_id'] = 6
+    report_dict['category'] = 'category_gksms_jjgg'
+    report_dict['show_title'] = 'category_gksms_jjgg/category/公开说明书'
+    base_report_type_url_list.append(report_dict)
+
+
+    report_dict = {}
+    report_dict['category_id'] = 7
+    report_dict['category'] = 'category_fecyr_jjgg'
+    report_dict['show_title'] = 'category_fecyr_jjgg/category/份额持有人大会'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 8
+    report_dict['category'] = 'category_sgsh_jjgg'
+    report_dict['show_title'] = 'category_sgsh_jjgg/category/申购及赎回'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 9
+    report_dict['category'] = 'category_fh_jjgg'
+    report_dict['show_title'] = 'category_fh_jjgg/category/分红'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 10
+    report_dict['category'] = 'category_qt_jjgg'
+    report_dict['show_title'] = 'category_qt_jjgg/category/其他'
+    base_report_type_url_list.append(report_dict)
+
+    return base_report_type_url_list
+
+
+#监管公告  深市 上市
+def get_regulator_report_type():
+    base_report_type_url_list = []
+
+    report_dict = {}
+    report_dict['category_id'] = 1
+    report_dict['category'] = 'jgjg_sz'
+    report_dict['show_title'] = 'jgjg_sz/plate/深交所公告'
+    base_report_type_url_list.append(report_dict)
+
+    report_dict = {}
+    report_dict['category_id'] = 2
+    report_dict['category'] = 'jgjg_sh'
+    report_dict['show_title'] = 'jgjg_sh/plate/上交所公告'
     base_report_type_url_list.append(report_dict)
 
     return base_report_type_url_list

@@ -25,7 +25,92 @@ CREATE TABLE `t_finance_history_report` (
   `file_type` varchar(20) DEFAULT NULL COMMENT '文件类型',
   `file_size` int(11) DEFAULT NULL COMMENT '文件大小',
   `pdf_url` varchar(200) DEFAULT NULL COMMENT '文件网址字段pdf地址',
-  `notice_id` varchar(40) DEFAULT NULL COMMENT '公告类型id',
+  `notice_id` int DEFAULT NULL COMMENT '公告类型id',
+  `notice_type` varchar(40) DEFAULT NULL COMMENT '公告类别',
+  `notice_date` datetime DEFAULT NULL COMMENT '公告时间',
+  `page_count` int(11) DEFAULT NULL COMMENT '文件页数',
+  `local_file` varchar(400) DEFAULT NULL COMMENT '本地文件名'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+#预披露
+CREATE TABLE `t_finance_pre_disclosure_report` (
+  `hid` varchar(40) DEFAULT NULL COMMENT '报告ID',
+  `sec_code` varchar(20) DEFAULT NULL COMMENT '代码',
+  `sec_name` varchar(40) DEFAULT NULL COMMENT '简称',
+  `notice_title` varchar(500) DEFAULT NULL COMMENT '公告标题',
+  `file_type` varchar(20) DEFAULT NULL COMMENT '文件类型',
+  `file_size` int(11) DEFAULT NULL COMMENT '文件大小',
+  `pdf_url` varchar(200) DEFAULT NULL COMMENT '文件网址字段pdf地址',
+  `notice_id` int DEFAULT NULL COMMENT '公告类型id',
+  `notice_type` varchar(40) DEFAULT NULL COMMENT '公告类别',
+  `notice_date` datetime DEFAULT NULL COMMENT '公告时间',
+  `page_count` int(11) DEFAULT NULL COMMENT '文件页数',
+  `local_file` varchar(400) DEFAULT NULL COMMENT '本地文件名'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+#股份装让
+CREATE TABLE `t_finance_neeq_company_report` (
+  `hid` varchar(40) DEFAULT NULL COMMENT '报告ID',
+  `sec_code` varchar(20) DEFAULT NULL COMMENT '代码',
+  `sec_name` varchar(40) DEFAULT NULL COMMENT '简称',
+  `notice_title` varchar(500) DEFAULT NULL COMMENT '公告标题',
+  `file_type` varchar(20) DEFAULT NULL COMMENT '文件类型',
+  `file_size` int(11) DEFAULT NULL COMMENT '文件大小',
+  `pdf_url` varchar(200) DEFAULT NULL COMMENT '文件网址字段pdf地址',
+  `notice_id` int DEFAULT NULL COMMENT '公告类型id',
+  `notice_type` varchar(40) DEFAULT NULL COMMENT '公告类别',
+  `notice_date` datetime DEFAULT NULL COMMENT '公告时间',
+  `page_count` int(11) DEFAULT NULL COMMENT '文件页数',
+  `local_file` varchar(400) DEFAULT NULL COMMENT '本地文件名'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+#香港公告
+CREATE TABLE `t_finance_hke_report` (
+  `hid` varchar(40) DEFAULT NULL COMMENT '报告ID',
+  `sec_code` varchar(20) DEFAULT NULL COMMENT '代码',
+  `sec_name` varchar(40) DEFAULT NULL COMMENT '简称',
+  `notice_title` varchar(500) DEFAULT NULL COMMENT '公告标题',
+  `file_type` varchar(20) DEFAULT NULL COMMENT '文件类型',
+  `file_size` int(11) DEFAULT NULL COMMENT '文件大小',
+  `pdf_url` varchar(200) DEFAULT NULL COMMENT '文件网址字段pdf地址',
+  `notice_id` int DEFAULT NULL COMMENT '公告类型id',
+  `notice_type` varchar(40) DEFAULT NULL COMMENT '公告类别',
+  `notice_date` datetime DEFAULT NULL COMMENT '公告时间',
+  `page_count` int(11) DEFAULT NULL COMMENT '文件页数',
+  `local_file` varchar(400) DEFAULT NULL COMMENT '本地文件名'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+#基金公告fund
+
+CREATE TABLE `t_finance_fund_report` (
+  `hid` varchar(40) DEFAULT NULL COMMENT '报告ID',
+  `sec_code` varchar(20) DEFAULT NULL COMMENT '代码',
+  `sec_name` varchar(40) DEFAULT NULL COMMENT '简称',
+  `notice_title` varchar(500) DEFAULT NULL COMMENT '公告标题',
+  `file_type` varchar(20) DEFAULT NULL COMMENT '文件类型',
+  `file_size` int(11) DEFAULT NULL COMMENT '文件大小',
+  `pdf_url` varchar(200) DEFAULT NULL COMMENT '文件网址字段pdf地址',
+  `notice_id` int DEFAULT NULL COMMENT '公告类型id',
+  `notice_type` varchar(40) DEFAULT NULL COMMENT '公告类别',
+  `notice_date` datetime DEFAULT NULL COMMENT '公告时间',
+  `page_count` int(11) DEFAULT NULL COMMENT '文件页数',
+  `local_file` varchar(400) DEFAULT NULL COMMENT '本地文件名'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+#监管机制公告
+CREATE TABLE `t_finance_regulator_report` (
+  `hid` varchar(40) DEFAULT NULL COMMENT '报告ID',
+  `sec_code` varchar(20) DEFAULT NULL COMMENT '代码',
+  `sec_name` varchar(40) DEFAULT NULL COMMENT '简称',
+  `notice_title` varchar(500) DEFAULT NULL COMMENT '公告标题',
+  `file_type` varchar(20) DEFAULT NULL COMMENT '文件类型',
+  `file_size` int(11) DEFAULT NULL COMMENT '文件大小',
+  `pdf_url` varchar(200) DEFAULT NULL COMMENT '文件网址字段pdf地址',
+  `notice_id` int DEFAULT NULL COMMENT '公告类型id',
   `notice_type` varchar(40) DEFAULT NULL COMMENT '公告类别',
   `notice_date` datetime DEFAULT NULL COMMENT '公告时间',
   `page_count` int(11) DEFAULT NULL COMMENT '文件页数',

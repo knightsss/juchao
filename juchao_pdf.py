@@ -4,7 +4,7 @@ import os
 import time
 import urllib2
 from PyPDF2 import PdfFileReader, PdfFileWriter
-
+from pdfrw import PdfReader
 def get_page(url):
     # page = urllib2.request.urlopen(url)
     get_html_flag = True
@@ -32,10 +32,8 @@ def get_pdf_path():
 
 #返回是否成功下载
 def download_pdf(url, file_name, current_year, request_column):
-    # url = "http://pg.jrj.com.cn/acc/Res/CN_RES/FUTURES/2018/3/1/4ae0f0c1-72c1-441c-8315-f21f6366216a.pdf"
-    # print "pdf url ",url
-    # file_name = get_pdf_path() + "\\research_report_pdf\\" + file_name
-    # path_file_name = 'home/user1/python/report/file/' + file_name
+
+    path_file_name =  '/home/user1/python/common/file/' + str(request_column) + '/' + str(current_year) + '/' + file_name
     path_file_name = file_name
     page = get_page(url)
     if page == '':
@@ -54,7 +52,7 @@ def download_pdf(url, file_name, current_year, request_column):
         return True
 
 
-#通过文件名 获取文件页数，文件大小
+#通过文件名 获取文件页数，文件大小 旧版
 def reload_pdf_page_size(file_name):
     # 获取一个 PdfFileReader 对象
     page_count = 0
@@ -79,14 +77,21 @@ def reload_pdf(file_name, current_year, request_column):
     # 获取一个 PdfFileReader 对象
     page_count = 0
     file_size = 0
-    # path_file_name = 'home/user1/python/report/file/' + file_name
+
+    path_file_name = '/home/user1/python/common/file/' + str(request_column) + '/' + str(current_year) + '/' + file_name
     path_file_name = file_name
     try:
         pdf_input = PdfFileReader(open(path_file_name, 'rb'))
         # 获取 PDF 的页数
         page_count = pdf_input.getNumPages()
     except:
+        print "get pdf count error!"
         page_count = 0
+        # try:
+        #     page_count = len(PdfReader(path_file_name).pages)
+        #     print 'pdf File has not been decrypted '
+        # except:
+
     return page_count
 
 def get_FileSize(filePath):

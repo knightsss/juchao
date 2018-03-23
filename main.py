@@ -46,7 +46,7 @@ def juchao_request(search_date, page_number, category):
             time.sleep(1)
     return spider_result
 
-def spider_page_report(current_year):
+def spider_page_report(current_year, table_name):
     next_year = current_year + 1
     start_date = datetime.datetime(current_year, 1, 1)
     next_year_date = datetime.datetime(next_year, 1, 1)
@@ -56,7 +56,7 @@ def spider_page_report(current_year):
 
     #连接数据库，获取最新日期值
     db_conn = mysql_connect()
-    last_date = get_mysql_record(db_conn, start_date, last_date)
+    last_date = get_mysql_record(db_conn, table_name, start_date, last_date)
     #重启后按日期过滤，定位到某一天，从大到小
     #遍历当年的每一天
     print "last date",last_date, ' start date:',start_date
@@ -74,7 +74,7 @@ def spider_page_report(current_year):
             json_content = simplejson.loads(contens)
             total_count = json_content['totalRecordNum']
             page_count = (total_count+29)/30
-            print "time:",  , "search_date:",search_date," total_count:",total_count," page_count:",page_count," announcement_type_desc:",announcement_type_desc, " announcement_type:",announcement_type
+            print "time:", time.strftime("%Y%m%d %H:%M:%S", time.localtime())  , "search_date:",search_date," total_count:",total_count," page_count:",page_count," announcement_type_desc:",announcement_type_desc, " announcement_type:",announcement_type
             time.sleep(1)
             #遍历当天的所有page
             for i in range(page_count):
@@ -97,10 +97,10 @@ def spider_page_report(current_year):
                     pdf_url = 'http://www.cninfo.com.cn/' + adjunct_url
                     file_name = sec_code + sec_name.replace('*','') + search_date + '#' + adjunct_url.split('/')[-1]
                     #获取pdf大小、页数
-                    if(download_pdf(pdf_url, file_name, current_year)):
-                        page_count = reload_pdf(file_name, current_year)
-                        print announcement_id, '  ',sec_code,'   ',sec_name,' ' ,announcement_title,'   ',adjunct_type,' ',adjunct_size,' ',pdf_url,' ', announcement_type_desc,' ',search_date,' ',page_count ,'  ',file_name
-                        insert_mysql_t_finance_report(db_conn, announcement_id, sec_code, sec_name, announcement_title, adjunct_type, adjunct_size, pdf_url, category_id, announcement_type_desc, search_date, page_count, file_name)
+                    if(download_pdf(pdf_url, file_name, current_year, 'rr')):
+                        page_count = reload_pdf(file_name, current_year, 'rr')
+                        print announcement_id, '  ',sec_code,'   ',sec_name,' ' ,announcement_title,'   ',adjunct_type,' ',adjunct_size,' ',pdf_url,' ', announcement_type_desc,' ',search_date,' ',page_count ,'  ',file_name,' ', type(file_name)
+                        insert_mysql_t_finance_report(db_conn, table_name, announcement_id, sec_code, sec_name, announcement_title, adjunct_type, adjunct_size, pdf_url, category_id, announcement_type_desc, search_date, page_count, file_name)
                         #写入mysql
                     else:
                         print "download pdf error:",pdf_url
@@ -111,4 +111,4 @@ if __name__ == '__main__':
     # test_url()
     #构造日期
     current_year = 2017
-    spider_page_report(current_year)
+    spider_page_report(current_year, 't_finance_history_report')
