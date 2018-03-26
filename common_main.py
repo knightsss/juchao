@@ -162,62 +162,67 @@ import sys
 if __name__ == '__main__':
     # test_url()
     #构造日期
-    if len(sys.argv) == 3:
+    if len(sys.argv) == 4:
         if 1:
             current_year = int(sys.argv[1])
-            index = int(sys.argv[2])
-            if current_year>1999 and current_year<2018:
+            end_year = int(sys.argv[2])
+            index = int(sys.argv[3])
+            while(current_year<=end_year):
 
-                if index == 0:
-                    table_name = 't_finance_history_report'
-                    request_column = "szse"
-                    announcement_msg_list = get_base_report_type_url()
-                    spider_page_report(current_year,table_name,request_column, announcement_msg_list)
-                elif index == 1:
-                    print index
-                    #预披露公告 pre_disclosure
-                    #current_year = 2017
-                    table_name = 't_finance_pre_disclosure_report'
-                    request_column = "pre_disclosure"
-                    announcement_msg_list = get_pre_disclosure_report_type()
-                    spider_page_report(current_year,table_name,request_column, announcement_msg_list)
-                elif index == 2:
-                    print index
-                     #股份转让系统挂牌公司公告 neeq_company
-                    # current_year = 2017
-                    table_name = 't_finance_neeq_company_report'
-                    request_column = "neeq_company"
-                    announcement_msg_list = get_neeq_company_report_type()
-                    spider_page_report(current_year, table_name, request_column, announcement_msg_list)
-                elif index == 3:
-                    print index
-                    #香港公告hke
-                    # current_year = 2017
-                    table_name = 't_finance_hke_report'
-                    request_column = "hke"
-                    announcement_msg_list = get_hke_report_type()
-                    spider_page_report(current_year, table_name, request_column, announcement_msg_list)
-                elif index == 4:
-                    print index
-                     #基金公告 fund
-                    #current_year = 2017
-                    table_name = 't_finance_fund_report'
-                    request_column = "fund"
-                    announcement_msg_list = get_fund_report_type()
-                    spider_page_report(current_year, table_name, request_column, announcement_msg_list)
-                elif index == 5:
-                    print index
-                    #监管公告 bond
-                    # current_year = 2017
-                    table_name = 't_finance_regulator_report'
-                    request_column = "regulator"
-                    announcement_msg_list = get_regulator_report_type()
-                    spider_page_report(current_year, table_name, request_column, announcement_msg_list)
+                if current_year>=1990 and current_year<2018:
+                    print current_year
+                    if index == 0:
+                        table_name = 't_finance_history_report'
+                        request_column = "szse"
+                        announcement_msg_list = get_base_report_type_url()
+                        spider_page_report(current_year,table_name,request_column, announcement_msg_list)
+                    elif index == 1:
+                        print index
+                        #预披露公告 pre_disclosure
+                        #current_year = 2017
+                        table_name = 't_finance_pre_disclosure_report'
+                        request_column = "pre_disclosure"
+                        announcement_msg_list = get_pre_disclosure_report_type()
+                        spider_page_report(current_year,table_name,request_column, announcement_msg_list)
+                    elif index == 2:
+                        print index
+                         #股份转让系统挂牌公司公告 neeq_company
+                        # current_year = 2017
+                        table_name = 't_finance_neeq_company_report'
+                        request_column = "neeq_company"
+                        announcement_msg_list = get_neeq_company_report_type()
+                        spider_page_report(current_year, table_name, request_column, announcement_msg_list)
+                    elif index == 3:
+                        print index
+                        #香港公告hke
+                        # current_year = 2017
+                        table_name = 't_finance_hke_report'
+                        request_column = "hke"
+                        announcement_msg_list = get_hke_report_type()
+                        spider_page_report(current_year, table_name, request_column, announcement_msg_list)
+                    elif index == 4:
+                        print index
+                         #基金公告 fund
+                        #current_year = 2017
+                        table_name = 't_finance_fund_report'
+                        request_column = "fund"
+                        announcement_msg_list = get_fund_report_type()
+                        spider_page_report(current_year, table_name, request_column, announcement_msg_list)
+                    elif index == 5:
+                        print index
+                        #监管公告 bond
+                        # current_year = 2017
+                        table_name = 't_finance_regulator_report'
+                        request_column = "regulator"
+                        announcement_msg_list = get_regulator_report_type()
+                        spider_page_report(current_year, table_name, request_column, announcement_msg_list)
+                    else:
+                        print "编号 1-5"
                 else:
-                    print "编号 1-5"
-            else:
-                print "年份 2000-2017"
+                    print "年份 2000-2017"
+
+                current_year = current_year + 1
         else:
-            print "格式 python common_main.py 2017 1"
-    print "格式 python common_main 2017 1"
+            print "格式 python common_main.py 2010 2017 0"
+    print "格式 python common_main 2010 2017 0"
 
